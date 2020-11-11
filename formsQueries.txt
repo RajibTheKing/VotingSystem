@@ -1,0 +1,35 @@
+
+Make Unique Vote 
+=UNIQUE(all_responses!C2:C)
+
+
+Filter Candidate
+=ARRAYFORMULA(iferror(VLOOKUP(A2, all_responses!C2:D,2, FALSE)))
+
+
+
+Verify Vote
+=IF(A2 = "", "",  IF(ARRAYFORMULA(iferror(VLOOKUP(LOWER(ARRAYFORMULA(iferror(VLOOKUP(A2, all_responses!C2:E,3, FALSE)))), voter_list!A:B,2, FALSE))) = A2, "Yes", "No"))
+
+
+
+
+Actual Vote Count
+=QUERY(B3:C, "select B, count(C) where C like 'Yes' group by B") 
+
+
+
+Prepare Regex:
+
+=concat(concat("(", join("|", A2:A6)), ")")
+
+
+
+https://1ty.me/j70Gsm
+
+
+https://1ty.me/KShELe1
+
+
+
+(aporba.das@gmail.com|sarker_razeeb@web.de|0811026jp@gmail.com|shaokatcse@gmail.com|minhajislam674@gmail.com)
