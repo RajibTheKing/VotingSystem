@@ -1,13 +1,9 @@
-import requests 
+import requests
 import time
 import random
 
 token_list = [line.strip() for line in open("token_file.txt", 'r')]
 random.shuffle(token_list)
-
-
-
-
 
 link_slug = [];
 cnt = 1
@@ -22,7 +18,6 @@ linkstr = "https://1ty.me/"
 links= []
 for slug in link_slug:
     links.append(linkstr+slug)
-
 print(links)
 
 with open('generated_links.txt', 'w') as f:
