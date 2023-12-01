@@ -5,6 +5,7 @@ import time
 
 sender_email = "stu218517"
 password = "CAUK-3260"
+votingForm = "https://docs.google.com/forms/d/e/1FAIpQLSdpv3q2KWIqV9WmjxfM0ikt7HNqRDXlaiKGxB01BW1EiRj_6Q/viewform"
 
 users = [line.strip() for line in open("emailList.txt", 'r')]
 list_onetime_links = [line.strip() for line in open("../onetimeLinkGenerator/generated_links.txt", 'r')]
@@ -13,8 +14,6 @@ nameList = [line.strip() for line in open("nameList.txt", 'r')]
 with open('instruction_email_template.html', 'r', encoding="utf8") as template:
     instruction_email_template = template.read().replace('\n', '')
     instruction_email_template = instruction_email_template.replace('\t', '')
-
-print("TheKing--> instruction_email_template: ", instruction_email_template);
 
 print(list_onetime_links)
 
@@ -27,17 +26,21 @@ with smtplib.SMTP_SSL("smtps.mail.uni-kiel.de", 465, context=context) as server:
 
     print("TheKing--> total Users: ", len(users))
     for i in range(0, len(users)):
-        print("TheKing--> Trying to send email: ", users[i])
+        print("TheKing--> email: ", users[i])
+        print("TheKing--> name: ", nameList[i])
+        print("TheKing--> link: ", list_onetime_links[i])
+
         message = MIMEMultipart("alternative")
         message["Subject"] = "(BSAK Election 2023) Instructions, Link for token and voting form."
         message["From"] = sender_email
         message["To"] = users[i]
 
-        html = instruction_email_template
+        formatedHtml = instruction_email_template
+        formatedHtml = formatedHtml.replace("__custom_name", nameList[i])
+        formatedHtml = formatedHtml.replace("__custom_token", list_onetime_links[i])
+        formatedHtml = formatedHtml.replace("__custom_link", votingForm)
 
-        formatedHtml = html.format(name = nameList[i],
-                                   token = list_onetime_links[i], 
-                                   form_link = "https://docs.google.com/forms/d/e/1FAIpQLSdpv3q2KWIqV9WmjxfM0ikt7HNqRDXlaiKGxB01BW1EiRj_6Q/viewform")
+        # print("TheKing--> instruction_email_template: ", formatedHtml)
 
         # Turn these into plain/html MIMEText objects
         part = MIMEText(formatedHtml, "html")
