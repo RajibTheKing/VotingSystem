@@ -1,0 +1,12 @@
+Total users: 2
+Processing user #0
+email: aporba.das@gmail.com
+name: Rajib Chandra Das
+link: https://1ty.me/G1N4w
+Email sent SUCCESS to: aporba.das@gmail.com
+Processing user #1
+email: aporba.das@hotmail.com
+name: Aporba Kar
+link: https://1ty.me/3m6bi
+Email sent SUCCESS to: aporba.das@hotmail.com
+Script finished processing all tasks

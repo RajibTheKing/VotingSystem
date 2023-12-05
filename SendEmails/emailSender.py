@@ -18,6 +18,7 @@ with open('instruction_email_template.html', 'r', encoding="utf8") as template:
 print(list_onetime_links)
 
 
+server_log = open("server_log.txt", "w")
 
 # Create secure connection with server and send email
 context = ssl.create_default_context()
@@ -25,10 +26,15 @@ with smtplib.SMTP_SSL("smtps.mail.uni-kiel.de", 465, context=context) as server:
     server.login(sender_email, password)
 
     print("TheKing--> total Users: ", len(users))
+    server_log.write("Total users: " + str(len(users)) + "\n")
     for i in range(0, len(users)):
         print("TheKing--> email: ", users[i])
         print("TheKing--> name: ", nameList[i])
         print("TheKing--> link: ", list_onetime_links[i])
+        server_log.write("Processing user #" + str(i) + "\n")
+        server_log.write("email: " +  users[i] + "\n")
+        server_log.write("name: " + nameList[i] + "\n")
+        server_log.write("link: " + list_onetime_links[i] + "\n")
 
         message = MIMEMultipart("alternative")
         message["Subject"] = "(BSAK Election 2023) Instructions, Link for token and voting form."
@@ -49,8 +55,18 @@ with smtplib.SMTP_SSL("smtps.mail.uni-kiel.de", 465, context=context) as server:
         # Add HTML/plain-text parts to MIMEMultipart message
         # The email client will try to render the last part first
         message.attach(part)
+        try:
+            ret = server.sendmail(sender_email, users[i], message.as_string())
+            print('TheKing--> Email is sent to  = ', users[i])
+            server_log.write("Email sent SUCCESS to: " + users[i] + "\n")
+        except Exception as e:
+            print("TheKing--> sending failed with error: ", e)
+            server_log.write("Email sent FAILED!!!! while sending to: " + users[i] + "\n")
 
-        ret = server.sendmail(sender_email, users[i], message.as_string())
-        print('TheKing--> Email is sent to  = ', users[i])
+
         del message
         time.sleep(5)
+
+    print("TheKing--> Script finished processing all tasks")
+    server_log.write("Script finished processing all tasks\n")
+    server_log.close()
