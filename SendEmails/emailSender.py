@@ -31,7 +31,7 @@ with smtplib.SMTP_SSL("smtps.mail.uni-kiel.de", 465, context=context) as server:
         print("TheKing--> email: ", users[i])
         print("TheKing--> name: ", nameList[i])
         print("TheKing--> link: ", list_onetime_links[i])
-        server_log.write("Processing user #" + str(i) + "\n")
+        server_log.write("\n\nProcessing user #" + str(i) + "\n")
         server_log.write("email: " +  users[i] + "\n")
         server_log.write("name: " + nameList[i] + "\n")
         server_log.write("link: " + list_onetime_links[i] + "\n")
@@ -68,5 +68,5 @@ with smtplib.SMTP_SSL("smtps.mail.uni-kiel.de", 465, context=context) as server:
         time.sleep(5)
 
     print("TheKing--> Script finished processing all tasks")
-    server_log.write("Script finished processing all tasks\n")
+    server_log.write("\n\nScript finished processing all tasks\n")
     server_log.close()
