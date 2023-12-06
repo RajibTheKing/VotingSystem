@@ -37,7 +37,7 @@ with smtplib.SMTP_SSL("smtps.mail.uni-kiel.de", 465, context=context) as server:
         server_log.write("link: " + list_onetime_links[i] + "\n")
 
         message = MIMEMultipart("alternative")
-        message["Subject"] = "(BSAK Election 2023) Instructions, Link for token and voting form."
+        message["Subject"] = "BSAAK President Election 2023/24"
         message["From"] = sender_email
         message["To"] = users[i]
 

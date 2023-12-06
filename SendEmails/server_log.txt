@@ -1,12 +1,32 @@
-Total users: 2
+Total users: 4
+
+
 Processing user #0
 email: aporba.das@gmail.com
 name: Rajib Chandra Das
-link: https://1ty.me/G1N4w
+link: https://1ty.me/B71ejzrM4
 Email sent SUCCESS to: aporba.das@gmail.com
+
+
 Processing user #1
-email: aporba.das@hotmail.com
-name: Aporba Kar
-link: https://1ty.me/3m6bi
-Email sent SUCCESS to: aporba.das@hotmail.com
+email: numanccn@gmail.com
+name: Yunus Ali Numan
+link: https://1ty.me/yojFTFi
+Email sent SUCCESS to: numanccn@gmail.com
+
+
+Processing user #2
+email: faiz_mpara@yahoo.com
+name: Faiz Ahmed
+link: https://1ty.me/yjH3kNI2v
+Email sent SUCCESS to: faiz_mpara@yahoo.com
+
+
+Processing user #3
+email: afmshuvoeee@gmail.com
+name: Abul Fattah Muhammad
+link: https://1ty.me/d1eQsO9pI
+Email sent SUCCESS to: afmshuvoeee@gmail.com
+
+
 Script finished processing all tasks
